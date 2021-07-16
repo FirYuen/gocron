@@ -1,4 +1,4 @@
-FROM golang:1.15-alpine as builder
+FROM golang:1.16-alpine as builder
 
 RUN apk update \
     && apk add --no-cache git ca-certificates make bash yarn nodejs
@@ -8,7 +8,7 @@ RUN go env -w GO111MODULE=on && \
 
 WORKDIR /app
 
-RUN git clone https://github.com/ouqiang/gocron.git \
+RUN git clone https://github.com/FirYuen/gocron.git \
     && cd gocron \
     && yarn config set ignore-engines true \
     && make install-vue \
@@ -16,7 +16,7 @@ RUN git clone https://github.com/ouqiang/gocron.git \
     && make statik \
     && CGO_ENABLED=0 make gocron
 
-FROM alpine:3.12
+FROM alpine:3.14
 
 RUN apk add --no-cache ca-certificates tzdata \
     && addgroup -S app \
