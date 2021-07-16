@@ -52,8 +52,6 @@ build-vue:
 
 .PHONY: install-vue
 install-vue:
-	yarn config set registry https://registry.npm.taobao.org -g
-	yarn config set sass_binary_site http://cdn.npm.taobao.org/dist/node-sass -g
 	cd web/vue && yarn install
 
 .PHONY: run-vue
