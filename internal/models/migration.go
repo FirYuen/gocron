@@ -24,6 +24,7 @@ func (migration *Migration) Install(dbName string) error {
 			return errors.New("数据表已存在")
 		}
 		if err != nil {
+			fmt.Println("create table %s failed",table)
 			return err
 		}
 		err = Db.Sync2(table)
